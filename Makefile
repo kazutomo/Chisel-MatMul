@@ -2,7 +2,7 @@
 # written by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
 
 PROJ=matmul
-T=pe
+T=mm
 
 all:
 	@echo ""
