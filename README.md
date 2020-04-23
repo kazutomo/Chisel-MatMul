@@ -29,22 +29,22 @@ Shorter target names for convinice
 To compile the design and run test:
 
      $ make test
-sbt "test:runMain matmul.TestMain mm"
-...
-...
-   2   5   5 ;   1   2   1 ;   3   3   2 ;[info] [0.012] 
-  24  35  25 ;   7  12   9 ;  15  27  22 ;[info] [0.012] 
-0: 4 0 0 0 0 0 0 0 0 [info] [0.016] 
-1: 9 10 0 2 0 0 0 0 0 [info] [0.016] 
-2: 24 20 10 4 5 0 6 0 0 [info] [0.017] 
-3: 24 35 15 7 9 5 9 15 0 [info] [0.018] 
-4: 24 35 25 7 12 7 15 21 15 [info] [0.019] 
-5: 24 35 25 7 12 9 15 27 18 [info] [0.019] 
-24 35 25 7 12 9 15 27 22 [info] [0.020] 
-[info] [0.025] Verification passed!
-test MatMul Success: 0 tests passed in 15 cycles in 0.045418 seconds 330.27 Hz
-[info] [0.026] RAN 10 CYCLES PASSED
-[success] Total time: 4 s, completed Apr 22, 2020 10:11:36 PM
+     sbt "test:runMain matmul.TestMain mm"
+     ...
+     ...
+        2   5   5 ;   1   2   1 ;   3   3   2 ;[info] [0.012] 
+       24  35  25 ;   7  12   9 ;  15  27  22 ;[info] [0.012] 
+     0: 4 0 0 0 0 0 0 0 0 [info] [0.016] 
+     1: 9 10 0 2 0 0 0 0 0 [info] [0.016] 
+     2: 24 20 10 4 5 0 6 0 0 [info] [0.017] 
+     3: 24 35 15 7 9 5 9 15 0 [info] [0.018] 
+     4: 24 35 25 7 12 7 15 21 15 [info] [0.019] 
+     5: 24 35 25 7 12 9 15 27 18 [info] [0.019] 
+     24 35 25 7 12 9 15 27 22 [info] [0.020] 
+     [info] [0.025] Verification passed!
+     test MatMul Success: 0 tests passed in 15 cycles in 0.045418 seconds 330.27 Hz
+     [info] [0.026] RAN 10 CYCLES PASSED
+     [success] Total time: 4 s, completed Apr 22, 2020 10:11:36 PM
 
 
 To test invididual module:
