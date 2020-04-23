@@ -67,8 +67,8 @@ Component RTL views
 ------------------
 
 <figure>
-	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/PE.png"  width="512" />
 	<figcaption>Processing Element</figcaption>
+	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/PE.png"  width="512" />
 </figure>
 
 <figure>
