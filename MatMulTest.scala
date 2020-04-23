@@ -62,8 +62,9 @@ class MatMulUnitTester(c: MatMul) extends PeekPokeTester(c) {
     print(f"$clk: ")
     checkresult()
   }
-  step(1)
-  print(f"${2*n}: ")
+
+  step(n-2) // correct?
+
   val output = checkresult()
 
   var invalidcnt = 0

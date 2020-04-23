@@ -27,7 +27,8 @@ object TestMain extends App {
     case _ => println(f"Warning: $mode is not a valid mode")
   }
 
-  println(f"MODE=$mode TARGET=$target")
+  val n = 5
+  println(f"MODE=$mode TARGET=$target N=$n")
 
   target match {
 
@@ -46,9 +47,9 @@ object TestMain extends App {
     case _ =>
       mode match {
         case "verilog" =>
-          chisel3.Driver.execute(args, () => new MatMul() )
+          chisel3.Driver.execute(args, () => new MatMul(n) )
         case _ =>
-          iotesters.Driver.execute(args, () => new MatMul() )  { c => new MatMulUnitTester(c) }
+          iotesters.Driver.execute(args, () => new MatMul(n) )  { c => new MatMulUnitTester(c) }
       }
   }
 }
