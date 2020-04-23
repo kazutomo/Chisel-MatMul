@@ -1,6 +1,6 @@
 Chisel matrix multiply systolic implementation
 
-not completed yet. 
+Currently it only supports a square matrix.
 
 
 Getting Started
@@ -27,14 +27,12 @@ Shorter target names for convinice
 
 To test invididual module:
 
-     $ make test T=pe
+     $ make test T=mm
 
 To list available target:
 
      $ make list
-     Available targets: pe
-
-
+     Available targets: pe mm
 
 
 ----
