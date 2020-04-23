@@ -72,21 +72,21 @@ Component RTL views
 </figure>
 
 <figure>
-	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/MatMul-3x3.png"  width="512" />
 	<figcaption>3x3 matrix multiply design</figcaption>
+	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/MatMul-3x3.png"  width="512" />
 </figure>
 
 <figure>
-	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/MatMul-16x16.png"  width="512" />
 	<figcaption>16x16 matrix multiply design</figcaption>
+	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/MatMul-16x16.png"  width="512" />
 </figure>
 
 
 Waveform views
 ------------------
 <figure>
-	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/gtkwave-3x3.png"  width="512" />
 	<figcaption>3x3 matrix multiply waveform (gtkwave)</figcaption>
+	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/gtkwave-3x3.png"  width="512" />
 </figure>
 
 
