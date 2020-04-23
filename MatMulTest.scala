@@ -76,4 +76,7 @@ class MatMulUnitTester(c: MatMul) extends PeekPokeTester(c) {
   }
 
   if (invalidcnt == 0) println("Verification passed!")
+
+
+  step(3)
 }
