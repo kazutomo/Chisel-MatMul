@@ -100,19 +100,18 @@ Resource usages example
 I compiled the generated 8-bit integer, 3x3 design using Quartus,
 targetting a Cyclone V chip (5CGXFC7C7F23C8) as a reference.
 
-* Auto DSP balancing
-ALMs   121/56480 (< 1%)
-Regs   192
-BRAM   0
-DSP    9 / 156 (6%)
-
-* DSP off
-ALMs   348/56480 (< 1%)
-Regs   240
-BRAM   0
-DSP    0 / 156 (6%)
+	   * Auto DSP balancing
+	   ALMs   121/56480 (< 1%)
+	   Regs   192
+	   BRAM   0
+	   DSP    9 / 156 (6%)
 
 
+	   * DSP off
+	   ALMs   348/56480 (< 1%)
+	   Regs   240
+	   BRAM   0
+	   DSP    0 / 156 (6%)
 
 ----
 Developed by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
