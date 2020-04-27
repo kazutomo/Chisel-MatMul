@@ -1,6 +1,9 @@
-Chisel matrix multiply systolic implementation
+Chisel matrix multiply systolic generator
 
-Currently it only supports a square matrix.
+This generates a systolic-based matrix multiplication design, which
+computes a NxN matrix multiplication in O(N). Currently it only
+supports square matrices and NxN processing unites needs to be
+inferred (e.g., 3x3 matrix requires 9 process units).
 
 
 Getting Started
@@ -88,6 +91,27 @@ Waveform views
 	<figcaption>3x3 matrix multiply waveform (gtkwave)</figcaption>
 	<img src="https://raw.githubusercontent.com/kazutomo/Chisel-MatMul/master/figs/gtkwave-3x3.png"  width="512" />
 </figure>
+
+
+
+Resource usages example
+-----------------------
+
+I compiled the generated 8-bit integer, 3x3 design using Quartus,
+targetting a Cyclone V chip (5CGXFC7C7F23C8) as a reference.
+
+* Auto DSP balancing
+ALMs   121/56480 (< 1%)
+Regs   192
+BRAM   0
+DSP    9 / 156 (6%)
+
+* DSP off
+ALMs   348/56480 (< 1%)
+Regs   240
+BRAM   0
+DSP    0 / 156 (6%)
+
 
 
 ----
