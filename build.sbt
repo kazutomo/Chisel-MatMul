@@ -27,9 +27,8 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
-organization := "edu.berkeley.cs"
-
 version := "0.0.1"
+
 name := "matmul"
 
 scalaVersion := "2.11.12"
