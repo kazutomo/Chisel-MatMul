@@ -1,9 +1,15 @@
 Chisel matrix multiply systolic generator
 
-This generates a systolic-based matrix multiplication design, which
-computes a NxN matrix multiplication in O(N). Currently it only
-supports square matrices and NxN processing unites needs to be
-inferred (e.g., 3x3 matrix requires 9 process units).
+This is an NxN systolic-array matrix multiplication design written in
+Chisel3. The systolic array matrix multiplication computes a NxN
+matrix multiplication in O(N), while the computational complexity of
+the navive implementation and the best known software algorithm are
+O(N^3) and O(N^2.37), respectively.
+
+The current version only supports square matrices and NxN processing
+unites needs to be inferred (e.g., 3x3 matrix requires 9 process
+units). This is a straightforward spacial implementation thus N is
+limited by the available resource of a target device or a simulator.
 
 
 Getting Started
