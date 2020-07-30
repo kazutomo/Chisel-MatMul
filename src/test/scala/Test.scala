@@ -28,6 +28,7 @@ object TestMain extends App {
   }
 
   val n = 3
+  val ninbits = 8
   println(f"MODE=$mode TARGET=$target N=$n")
 
   target match {
@@ -47,9 +48,9 @@ object TestMain extends App {
     case _ =>
       mode match {
         case "verilog" =>
-          chisel3.Driver.execute(args, () => new MatMul(n) )
+          chisel3.Driver.execute(args, () => new MatMul(n, ninbits) )
         case _ =>
-          iotesters.Driver.execute(args, () => new MatMul(n) )  { c => new MatMulUnitTester(c) }
+          iotesters.Driver.execute(args, () => new MatMul(n, ninbits) )  { c => new MatMulUnitTester(c) }
       }
   }
 }
