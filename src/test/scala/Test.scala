@@ -2,7 +2,7 @@
 // matmul test driver
 //
 // written by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
-// 
+//
 package matmul
 
 import chisel3.iotesters
@@ -12,7 +12,7 @@ object TestMain extends App {
 
   // component target list.
   val targetlist = List(
-    "pe", "mm"
+    "pcnt", "pe", "mm"
   )
 
   val a = if (args.length > 0) args(0) else "mm"
@@ -43,6 +43,14 @@ object TestMain extends App {
           chisel3.Driver.execute(args, () => new ProcElem() )
         case _ =>
           iotesters.Driver.execute(args, () => new ProcElem() ) { c => new ProcElemUnitTester(c) }
+      }
+
+    case "pcnt" =>
+      mode match {
+        case "verilog" =>
+          chisel3.Driver.execute(args, () => new Pcnt() )
+        case _ =>
+          iotesters.Driver.execute(args, () => new Pcnt() ) { c => new PcntUnitTester(c) }
       }
 
     case _ =>
