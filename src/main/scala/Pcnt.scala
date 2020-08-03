@@ -1,5 +1,7 @@
 //
-// A 4-bit pop count (not parameterized)
+// binary matrix multiply
+//
+// popcnt(xnor(A, B))
 //
 // written by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
 //
@@ -8,18 +10,17 @@ package matmul
 import chisel3._
 import chisel3.util.log2Ceil
 
-class Pcnt() extends Module {
+class Pcnt(val n:Int = 4) extends Module {
     val io = IO(new Bundle {
-      val in_a  = Input(UInt(4.W))
-      val in_b  = Input(UInt(4.W))
-      val out   = Output(SInt(8.W))
+      val in_a  = Input(UInt(n.W))
+      val in_b  = Input(UInt(n.W))
+      val out   = Output(UInt((log2Ceil(n)+1).W))
     })
 
-  val stbl = Array(
-    -4, -2, -2, 0, -2, 0, 0, 2,
-    -2,  0,  0, 2,  0, 2, 2, 4)
+  val cz4 = Module(new Clz4())
 
-  val lut = VecInit(stbl map {s => s.S(8.W)})
+  //cz4.io.in := ~(io.in_a ^ io.in_b)
+  cz4.io.in := io.in_a | io.in_b
 
-  io.out := lut(~(io.in_a ^ io.in_b))
+  io.out := cz4.io.out
 }
