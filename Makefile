@@ -22,7 +22,7 @@ all:
 
 
 v verilog:
-	sbt "test:runMain ${PROJ}.TestMain $T:verilog"
+	SBT_OPTS="-Xms512M -Xmx2048M -Xss8M -XX:MaxMetaspaceSize=1024M" sbt "test:runMain ${PROJ}.TestMain $T:verilog"
 
 t test:
 	sbt "test:runMain ${PROJ}.TestMain $T"

@@ -27,7 +27,7 @@ object TestMain extends App {
     case _ => println(f"Warning: $mode is not a valid mode")
   }
 
-  val n = 3
+  val n = 8
   val ninbits = 8
   println(f"MODE=$mode TARGET=$target N=$n")
 
