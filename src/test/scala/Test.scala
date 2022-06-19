@@ -7,6 +7,7 @@ package matmul
 
 import chisel3.iotesters
 import chisel3.iotesters.{Driver, PeekPokeTester}
+import chisel3.stage.ChiselStage
 
 object TestMain extends App {
 
@@ -40,7 +41,7 @@ object TestMain extends App {
     case "pe" =>
       mode match {
         case "verilog" =>
-          chisel3.Driver.execute(args, () => new ProcElem() )
+          (new ChiselStage).emitVerilog(new ProcElem())
         case _ =>
           iotesters.Driver.execute(args, () => new ProcElem() ) { c => new ProcElemUnitTester(c) }
       }
@@ -48,7 +49,7 @@ object TestMain extends App {
     case _ =>
       mode match {
         case "verilog" =>
-          chisel3.Driver.execute(args, () => new MatMul(n, ninbits) )
+          (new ChiselStage).emitVerilog(new MatMul(n, ninbits))
         case _ =>
           iotesters.Driver.execute(args, () => new MatMul(n, ninbits) )  { c => new MatMulUnitTester(c) }
       }

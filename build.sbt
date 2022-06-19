@@ -27,21 +27,22 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
-version := "0.0.1"
+version := "0.0.2"
 
 name := "matmul"
 
-scalaVersion := "2.11.12"
-
-crossScalaVersions := Seq("2.11.12", "2.12.4")
+scalaVersion := "2.12.15"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-language:reflectiveCalls")
+
+addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % "3.5.3" cross CrossVersion.full)
 
 // Provide a managed dependency on X if -DXVersion="" is supplied on the command line.
 // The following are the current "release" versions.
 val defaultVersions = Map(
-  "chisel3" -> "3.1.+",
-  "chisel-iotesters" -> "1.2.+"
+  "chisel3" -> "3.5.+",
+  "chisel-iotesters" -> "2.5.+",
+  "chiseltest" -> "0.5.+"
   )
 
 libraryDependencies ++= (Seq("chisel3","chisel-iotesters").map {
@@ -64,3 +65,10 @@ scalacOptions ++= scalacOptionsVersion(scalaVersion.value)
 javacOptions ++= javacOptionsVersion(scalaVersion.value)
 
 trapExit := false
+
+val listTests = taskKey[Unit]("list tests")
+
+listTests := {
+  val tmp = (Test / definedTests).value
+  tmp map { t => println(t.name) }
+}
