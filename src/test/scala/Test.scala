@@ -42,16 +42,12 @@ object TestMain extends App {
       mode match {
         case "verilog" =>
           (new ChiselStage).emitVerilog(new ProcElem())
-        case _ =>
-          iotesters.Driver.execute(args, () => new ProcElem() ) { c => new ProcElemUnitTester(c) }
       }
 
     case _ =>
       mode match {
         case "verilog" =>
           (new ChiselStage).emitVerilog(new MatMul(n, ninbits))
-        case _ =>
-          iotesters.Driver.execute(args, () => new MatMul(n, ninbits) )  { c => new MatMulUnitTester(c) }
       }
   }
 }

@@ -45,8 +45,8 @@ val defaultVersions = Map(
   "chiseltest" -> "0.5.+"
   )
 
-libraryDependencies ++= (Seq("chisel3","chisel-iotesters").map {
-  dep: String => "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", defaultVersions(dep)) })
+libraryDependencies ++= Seq("chisel3","chisel-iotesters", "chiseltest").map {
+  dep: String => "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", defaultVersions(dep)) }
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots"),
