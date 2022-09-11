@@ -11,6 +11,10 @@ unites needs to be inferred (e.g., 3x3 matrix requires 9 process
 units). This is a straightforward spacial implementation thus N is
 limited by the available resource of a target device or a simulator.
 
+# Prerequisites
+- Java SDK
+- sbt (see https://www.scala-sbt.org/download.html for installation)
+- (optional) Verilator, Scala
 
 Getting Started
 ---------------
@@ -19,7 +23,8 @@ Getting Started
      $ cd Chisel-MatMul
      $ make test
 
-NOTE: tested on Fedora 28 with sbt 1.3.7
+NOTE:
+- tested on Fedora 28 with sbt 1.3.7
 
 Usage: type 'make' without argument
 --------------
