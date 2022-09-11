@@ -1,5 +1,5 @@
 //
-// MatMul
+// Simple Systolic Squire MatMul
 //
 // written by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
 //
@@ -10,7 +10,7 @@ import chisel3.util.log2Ceil
 
 // Compute A * B, where A and B are a square matrix.
 //
-class MatMul(val n:Int = 3, val ninbits:Int = 8) extends Module {
+class SMatMul(val n:Int = 3, val ninbits:Int = 8) extends Module {
   val io = IO(new Bundle {
     val in_a  = Input(Vec(n, UInt(ninbits.W))) // horizontal inputs
     val in_b  = Input(Vec(n, UInt(ninbits.W))) // vertical inputs
@@ -43,4 +43,11 @@ class MatMul(val n:Int = 3, val ninbits:Int = 8) extends Module {
       if (row < n-1)  v_wires(getvidx(row,col)) := p_elems(pidx).out_v
     }
   }
+}
+
+// generates Verilog code
+import chisel3.stage.ChiselStage
+
+object SMatMulDriver extends App {
+  (new ChiselStage).emitVerilog(new SMatMul())
 }

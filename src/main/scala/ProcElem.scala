@@ -38,3 +38,10 @@ class ProcElem(val ninbits:Int = 8) extends Module {
   io.out_v := vreg
   io.out := res
 }
+
+// generates Verilog code
+import chisel3.stage.ChiselStage
+
+object ProcElemDriver extends App {
+  (new ChiselStage).emitVerilog(new ProcElem())
+}

@@ -5,16 +5,17 @@
 //
 package matmul
 
-import org.scalatest.flatspec.AnyFlatSpec
 import chisel3._
 import chiseltest._
-import chiseltest.iotesters.PeekPokeTester
+import org.scalatest.flatspec.AnyFlatSpec
 
 class ProcElemSpec extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "ProcElem"
 
-  "ProcElem" should "pass" in {
+  "ProcElem basic test" should "pass" in {
     test(new ProcElem) { dut =>
+      require(dut.ninbits > 4)
+
       val hins = List(1,2,3,0)
       val vins = List(4,5,6,0)
       var acc = 0

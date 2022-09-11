@@ -1,40 +1,37 @@
 # Makefile for the Matrix Multiply Chisel project
 # written by Kazutomo Yoshii <kazutomo.yoshii@gmail.com>
 
-PROJ=matmul
-T=mm
-
 all:
 	@echo ""
-	@echo "$ make test       # run Scala test"
-	@echo "$ make simulate   # invoke Verilator"
-	@echo "$ make verilog    # only generate Verilog codes"
+	@echo "$ make list       # lists test benches and drivers"
+	@echo "$ make test       # runs all Chisel tests"
+	@echo "$ make verilog    # generates Verilog code"
+#	@echo "$ make simulate   # invokes Verilator"
 	@echo ""
-	@echo "Shorter form for convinice"
-	@echo "$ make t"
-	@echo "$ make s"
-	@echo "$ make v"
-	@echo ""
-#	@echo "To test invididual module"
-#	@echo "$ make test T=$target"
-#	@echo ""
-#	@echo ""
 
-
-v verilog:
-	SBT_OPTS="-Xms512M -Xmx2048M -Xss8M -XX:MaxMetaspaceSize=1024M" sbt "test:runMain ${PROJ}.TestMain $T:verilog"
+list:
+	@echo "List test benches"
+	@sbt "show Test/definedTestNames"
+	@echo
+	@echo "List drivers that generates Verilog file"
+	@sbt "show Compile/discoveredMainClasses"
+	@echo
 
 t test:
-	sbt "test:runMain ${PROJ}.TestMain $T"
+	sbt test
 
-s simulate:
-	sbt "test:runMain ${PROJ}.TestMain $T --backend-name verilator"
+v verilog:
+	sbt "runMain matmul.SMatMulDriver"
 
-#l list:
+#s simulate:
+#	sbt "test:runMain ${PROJ}.TestMain $T --backend-name verilator"
+#v verilog:
+#	SBT_OPTS="-Xms512M -Xmx2048M -Xss8M -XX:MaxMetaspaceSize=1024M" sbt "test:runMain ${PROJ}.TestMain $T:verilog"
 
-h help:
-	sbt "test:runMain $PROJ.TestMain --help"
 
 clean:
-	rm -rf project target test_run_dir generated *.class
-	rm -rf *.fir *.anno.json
+	rm -rf project target test_run_dir generated
+	rm -f *.fir *.anno.json *.class
+
+distclean: clean
+	rm -f *.v
