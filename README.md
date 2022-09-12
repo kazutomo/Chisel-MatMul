@@ -35,12 +35,14 @@ List test benches and run a specific test bench
      [info] * matmul.ProcElemSpec
      [info] * matmul.SMatMulSpec
 
-     $ sbt "testOnly matmul.ProcElemSpec"
+     # Use Treadle (Scala-based simulator)
+     $ sbt "testOnly matmul.ProcElemSpec -- -n RequiresTreadle"
      ProcElemUnitTester
      ....
      [info] All tests passed.
 
-     $ sbt "testOnly matmul.SMatMulSpec"
+	 # Use Verilator
+     $ sbt "testOnly matmul.SMatMulSpec -- -n RequiresVerilator"
      ...
      ...
         2   5   5 ;   1   2   1 ;   3   3   2 ;[info] [0.012]
@@ -56,6 +58,9 @@ List test benches and run a specific test bench
      test MatMul Success: 0 tests passed in 15 cycles in 0.045418 seconds 330.27 Hz
      [info] [0.026] RAN 10 CYCLES PASSED
      [success] Total time: 4 s, completed Apr 22, 2020 10:11:36 PM
+
+NOTE: Without any scalatest argument (-n or -l), both Treadle and
+Verilator will run.
 
 
 List Verilog generator and generate a specific module

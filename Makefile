@@ -18,10 +18,10 @@ list:
 	@echo
 
 t test:
-	sbt test
+	@sbt "testOnly matmul.* -- -l RequiresVerilator"
 
 v verilog:
-	sbt "runMain matmul.SMatMulDriver"
+	@sbt "runMain matmul.SMatMulDriver"
 
 #s simulate:
 #	sbt "test:runMain ${PROJ}.TestMain $T --backend-name verilator"
