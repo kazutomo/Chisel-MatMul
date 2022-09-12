@@ -10,6 +10,18 @@ import chiseltest._
 import org.scalatest.Tag
 import org.scalatest.flatspec.AnyFlatSpec
 
+//
+// Use scalatest's option flags to include or exclude tags.
+//
+// To include only RequiresTreadle
+// sbt "testOnly matmul.SMatMulSpec -- -n RequiresTreadle"
+//
+// To exclude RequiresTreadle, which selects RequiresVerilator
+// sbt "testOnly matmul.SMatMulSpec -- -l RequiresTreadle"
+//
+object RequiresVerilator extends Tag("RequiresVerilator")
+object RequiresTreadle extends Tag("RequiresTreadle")
+
 class SMatMulSpec extends AnyFlatSpec with ChiselScalatestTester {
   def mmul(a: Array[Array[Int]], b: Array[Array[Int]]) : Array[Array[Int]] = {
     for(r <- a) yield {
@@ -79,7 +91,11 @@ class SMatMulSpec extends AnyFlatSpec with ChiselScalatestTester {
     dut.clock.step(3)
   }
 
-  "SMatMul basic test" should "pass" in {
+  "SMatMul basic test on Verilator" should "pass" taggedAs RequiresVerilator in {
+    test(new SMatMul()).withAnnotations(Seq(VerilatorBackendAnnotation, WriteVcdAnnotation))(testSMatMul)
+  }
+
+  "SMatMul basic test on Treadle" should "pass" taggedAs RequiresTreadle in {
     test(new SMatMul())(testSMatMul)
   }
 }
