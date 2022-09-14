@@ -10,7 +10,7 @@ import chisel3.util.log2Ceil
 
 // Compute A * B, where A and B are a square matrix.
 //
-class SMatMul(val n:Int = 3, val ninbits:Int = 8) extends Module {
+class SMatMul(val n:Int = 4, val ninbits:Int = 8) extends Module {
   val io = IO(new Bundle {
     val in_a  = Input(Vec(n, UInt(ninbits.W))) // horizontal inputs
     val in_b  = Input(Vec(n, UInt(ninbits.W))) // vertical inputs
@@ -48,6 +48,15 @@ class SMatMul(val n:Int = 3, val ninbits:Int = 8) extends Module {
 // generates Verilog code
 import chisel3.stage.ChiselStage
 
+
+
 object SMatMulDriver extends App {
-  (new ChiselStage).emitVerilog(new SMatMul())
+  val params = DesignParams
+
+  println("Design paramters")
+  println(f"n=${params.n}")
+  println(f"nbits=${params.nbits}")
+
+
+  (new ChiselStage).emitVerilog(new SMatMul(params.n, params.nbits))
 }
