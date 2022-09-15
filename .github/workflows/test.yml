@@ -1,0 +1,25 @@
+name: simple chisel test
+
+on:
+  pull_request:
+  push:
+    branches:
+	  - master
+
+jobs:
+  test:
+    name: sbt testOnly on ubuntu
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        scala: [2.12.15, 2.13.7]
+        jvm: [adopt@1.8, adopt@1.11]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v10
+        with:
+          java-version: ${{ matrix.jvm }}
+      - name: Test
+        run: sbt ++${{ matrix.scala }} "testOnly -- -l RequiresVcs -l RequiresVerilator"
