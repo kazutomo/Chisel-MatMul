@@ -20,6 +20,9 @@ list:
 t test:
 	@sbt "testOnly matmul.* -- -l RequiresVerilator"
 
+s simulate:
+	@sbt "testOnly matmul.* -- -l RequiresTreadle" # run only Verilator
+
 v verilog:
 	@sbt "runMain matmul.SMatMulDriver"
 
