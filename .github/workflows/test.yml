@@ -2,7 +2,11 @@ name: simple chisel test
 
 on:
   pull_request:
+    paths:
+	  - src/**
   push:
+    paths:
+	  - src/**
 
 jobs:
   test:
