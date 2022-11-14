@@ -1,0 +1,16 @@
+.bsp
+
+project/
+target/
+
+# intellij idea
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
+
+# general
+*.class
+
+*~
