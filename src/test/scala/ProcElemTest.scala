@@ -42,5 +42,4 @@ class ProcElemSpec extends AnyFlatSpec with ChiselScalatestTester {
   "ProcElem basic test on Treadle" should "pass" taggedAs RequiresTreadle in {
     test(new ProcElem())(testProcElem)
   }
-
 }
