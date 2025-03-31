@@ -6,7 +6,7 @@
 package matmul
 
 import chisel3._
-import chisel3.util.log2Ceil
+import common.GenVerilog
 
 // each ProcElem (PE) is mapped to each element in a NxN output matrix
 class ProcElem(val ninbits:Int = 8) extends Module {
@@ -39,9 +39,6 @@ class ProcElem(val ninbits:Int = 8) extends Module {
   io.out := res
 }
 
-// generates Verilog code
-import chisel3.stage.ChiselStage
-
 object ProcElemDriver extends App {
-  (new ChiselStage).emitVerilog(new ProcElem())
+  GenVerilog.generate(new ProcElem())
 }

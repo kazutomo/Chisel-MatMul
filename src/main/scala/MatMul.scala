@@ -6,7 +6,7 @@
 package matmul
 
 import chisel3._
-import chisel3.util.log2Ceil
+import common.GenVerilog
 
 // Compute A * B, where A and B are a square matrix.
 //
@@ -45,18 +45,12 @@ class SMatMul(val n:Int = 4, val ninbits:Int = 8) extends Module {
   }
 }
 
-// generates Verilog code
-import chisel3.stage.ChiselStage
-
-
-
-object SMatMulDriver extends App {
+object SMatMul extends App {
   val params = DesignParams
 
   println("Design paramters")
   println(f"n=${params.n}")
   println(f"nbits=${params.nbits}")
 
-
-  (new ChiselStage).emitVerilog(new SMatMul(params.n, params.nbits))
+  GenVerilog.generate(new SMatMul(params.n, params.nbits))
 }

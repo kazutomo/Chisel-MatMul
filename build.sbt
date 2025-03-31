@@ -1,28 +1,25 @@
 // This is based on build.sbt in the chisel-template reposiory
 
-//ThisBuild / scalaVersion     := "2.13.8"
-ThisBuild / scalaVersion     := "2.12.17"
-ThisBuild / version          := "0.0.3"
+ThisBuild / scalaVersion     := "2.13.15"
+ThisBuild / version          := "0.1.0"
 
-//val chiselVersion = "3.5.4"
-//val chiseltestVersion = "0.5.4"
-val chiselVersion = "3.6-SNAPSHOT"
-val chiseltestVersion = "0.6-SNAPSHOT"
-
+val chiselVersion = "6.7.0"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "simple-systolic-matmul",
+    name := "ChiselMatmul",
     libraryDependencies ++= Seq(
-      "edu.berkeley.cs" %% "chisel3" % chiselVersion,
-      "edu.berkeley.cs" %% "chiseltest" % chiseltestVersion % "test"
+      "org.chipsalliance" %% "chisel" % chiselVersion,
+      "org.scalatest" %% "scalatest" % "3.2.16" % "test",
+      "edu.berkeley.cs" %% "chiseltest" % "6.0.0",
     ),
     scalacOptions ++= Seq(
       "-language:reflectiveCalls",
       "-deprecation",
       "-feature",
       "-Xcheckinit",
-      "-P:chiselplugin:genBundleElements",
+      "-Ymacro-annotations",
     ),
-    addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % chiselVersion cross CrossVersion.full),
+    addCompilerPlugin("org.chipsalliance" % "chisel-plugin" % chiselVersion cross CrossVersion.full),
+
   )
