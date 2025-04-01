@@ -5,11 +5,10 @@
 //
 package matmul
 
-import chisel3._
-import chiseltest._
+import chisel3.simulator.EphemeralSimulator._
 import org.scalatest.flatspec.AnyFlatSpec
 
-class ProcElemSpec extends AnyFlatSpec with ChiselScalatestTester {
+class ProcElemSpec extends AnyFlatSpec {
   behavior of "ProcElem"
 
   private def testProcElem(dut: ProcElem): Unit = {
@@ -26,20 +25,16 @@ class ProcElemSpec extends AnyFlatSpec with ChiselScalatestTester {
       acc += h * v
       dut.io.in_h.poke(h)
       dut.io.in_v.poke(v)
-      val out_h = dut.io.out_h.peek()
-      val out_v = dut.io.out_v.peek()
-      val out = dut.io.out.peek()
+      val out_h = dut.io.out_h.peek().litValue
+      val out_v = dut.io.out_v.peek().litValue
+      val out = dut.io.out.peek().litValue
       println(s"h=$h v=$v out_h=$out_h out_v=$out_v out=$out")
       dut.clock.step()
     }
     dut.io.out.expect(acc)
   }
 
-  "ProcElem basic test on Verilator" should "pass" taggedAs RequiresVerilator in {
-    test(new ProcElem()).withAnnotations(Seq(VerilatorBackendAnnotation, WriteVcdAnnotation))(testProcElem)
-  }
-
-  "ProcElem basic test on Treadle" should "pass" taggedAs RequiresTreadle in {
-    test(new ProcElem())(testProcElem)
+  "ProcElem basic test" should "pass" in {
+    simulate(new ProcElem())(testProcElem)
   }
 }
