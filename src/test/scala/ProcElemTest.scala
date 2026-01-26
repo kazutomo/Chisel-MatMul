@@ -5,10 +5,10 @@
 //
 package matmul
 
-import chisel3.simulator.EphemeralSimulator._
+import chisel3.simulator.ChiselSim
 import org.scalatest.flatspec.AnyFlatSpec
 
-class ProcElemSpec extends AnyFlatSpec {
+class ProcElemSpec extends AnyFlatSpec with ChiselSim {
   behavior of "ProcElem"
 
   private def testProcElem(dut: ProcElem): Unit = {

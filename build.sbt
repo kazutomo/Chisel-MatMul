@@ -1,9 +1,9 @@
 // This is based on build.sbt in the chisel-template reposiory
 
 ThisBuild / scalaVersion     := "2.13.15"
-ThisBuild / version          := "0.1.0"
+ThisBuild / version          := "0.2.0"
 
-val chiselVersion = "6.7.0"
+val chiselVersion = "7.6.0"
 
 lazy val root = (project in file("."))
   .settings(
@@ -11,7 +11,6 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "org.chipsalliance" %% "chisel" % chiselVersion,
       "org.scalatest" %% "scalatest" % "3.2.16" % "test",
-      "edu.berkeley.cs" %% "chiseltest" % "6.0.0",
     ),
     scalacOptions ++= Seq(
       "-language:reflectiveCalls",
@@ -21,5 +20,4 @@ lazy val root = (project in file("."))
       "-Ymacro-annotations",
     ),
     addCompilerPlugin("org.chipsalliance" % "chisel-plugin" % chiselVersion cross CrossVersion.full),
-
   )

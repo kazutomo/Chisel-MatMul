@@ -5,10 +5,10 @@
 //
 package matmul
 
-import chisel3.simulator.EphemeralSimulator._
+import chisel3.simulator.ChiselSim
 import org.scalatest.flatspec.AnyFlatSpec
 
-class SMatMulSpec extends AnyFlatSpec {
+class SMatMulSpec extends AnyFlatSpec with ChiselSim {
   def mmul(a: Array[Array[Int]], b: Array[Array[Int]]) : Array[Array[Int]] = {
     for(r <- a) yield {
       for(c <- b.transpose) yield r zip c map Function.tupled(_*_) reduceLeft (_+_)
