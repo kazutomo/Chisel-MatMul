@@ -1,27 +1,33 @@
-name: simple chisel test
+name: Continuous Integration
 
-on:
-  pull_request:
-    paths:
-      - src/**
-  push:
-    paths:
-      - src/**
+on: [push]
 
 jobs:
-  test:
-    name: sbt testOnly on ubuntu
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        scala: [2.13.8]
-        jvm: [adopt@1.8, adopt@1.11]
+  ci:
+#    if: ${{ false }}
+    name: ci
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Update
+        run: |
+         sudo apt-get update
+      - name: Cache Scala
+        uses: coursier/cache-action@v6
       - name: Setup Scala
-        uses: olafurpg/setup-scala@v10
+        uses: coursier/setup-action@v1
         with:
-          java-version: ${{ matrix.jvm }}
-      - name: Test
-        run: sbt ++${{ matrix.scala }} "testOnly -- -l RequiresVcs -l RequiresVerilator"
+          jvm: adopt:11
+          apps: sbt mill
+      - name: Setup Dependencies
+        run: |
+          sudo apt-get install ccache
+#      - name: Initialize submodule
+#        run: |
+#          git submodule init
+#          git submodule update
+      - name: Install Verilator
+        run: sudo apt-get install -y verilator gcc
+      - name: SBT Test
+        run: sbt test
