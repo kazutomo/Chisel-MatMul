@@ -1,6 +1,6 @@
 // This is based on build.sbt in the chisel-template reposiory
 
-ThisBuild / scalaVersion     := "2.13.15"
+ThisBuild / scalaVersion     := "2.13.18"
 ThisBuild / version          := "0.2.0"
 
 val chiselVersion = "7.6.0"
